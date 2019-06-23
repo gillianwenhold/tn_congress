@@ -28,10 +28,4 @@ CLI
     = Personal - :personal_info, :committees, :community_involvement, :honors
     = Bills - :bill_url, :bill_id, :info, :last_action, :date
 
-Scraper
-
-
-
-
-
 =end
