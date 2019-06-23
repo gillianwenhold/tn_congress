@@ -1,3 +1,7 @@
+require "pry"
+require "nokogiri"
+require "open-uri"
+
 class TnCongress::Scraper
 
   def self.get_all_senators
@@ -13,5 +17,8 @@ class TnCongress::Scraper
       {name: "Beck, Bill", party: "D", district: "District 51", phone: "(615) 741-3229"}
     ]
   end
+
+  def self.get_all_reps(url)
+
 
 end

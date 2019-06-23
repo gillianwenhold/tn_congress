@@ -1,5 +1,7 @@
 class TnCongress::CLI
 
+  attr_accessors :reps
+
   def call
     puts "Welcome to the TN Congress Directory!"
     get_index_data
