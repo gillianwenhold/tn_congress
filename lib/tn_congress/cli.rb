@@ -20,13 +20,18 @@ class TnCongress::CLI
         # selection = TnCongress::Scraper.get_all_reps("http://www.capitol.tn.gov/house/members/")
         selection = TnCongress::Scraper.get_all_house_reps
         TnCongress::Reps.create_from_selection(selection)
-        puts "Here's your list of House members!"
+        @reps = TnCongress::Reps.all
+        @reps.each_with_index do |rep, index|
+          puts "#{index+1}. #{rep.name} - Party: #{rep.party}, District: #{rep.district}, Phone: #{rep.phone}"
+        end
       elsif input == "senate"
         # selection = TnCongress::Scraper.get_all_reps("http://www.capitol.tn.gov/senate/members/")
         selection = TnCongress::Scraper.get_all_senators
         TnCongress::Reps.create_from_selection(selection)
-
-        puts "Here's your list of Senators!"
+        @reps = TnCongress::Reps.all
+        @reps.each_with_index do |rep, index|
+          puts "#{index+1}. #{rep.name} - Party: #{rep.party}, District: #{rep.district}, Phone: #{rep.phone}"
+        end
       elsif input == "exit"
         break
       else

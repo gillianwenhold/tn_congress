@@ -12,8 +12,8 @@ class TnCongress::Reps
   end
 
   def self.create_from_selection(selection)
-    selection.each do |event|
-      self.new(event)
+    selection.each do |rep|
+      self.new(rep)
     end
   end
 
