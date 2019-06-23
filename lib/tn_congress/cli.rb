@@ -17,8 +17,15 @@ class TnCongress::CLI
     while input != "exit"
       input = gets.strip.downcase
       if input == "house"
+        # selection = TnCongress::Scraper.get_all_reps("http://www.capitol.tn.gov/house/members/")
+        selection = TnCongress::Scraper.get_all_house_reps
+        TnCongress::Reps.create_from_selection(selection)
         puts "Here's your list of House members!"
       elsif input == "senate"
+        # selection = TnCongress::Scraper.get_all_reps("http://www.capitol.tn.gov/senate/members/")
+        selection = TnCongress::Scraper.get_all_senators
+        TnCongress::Reps.create_from_selection(selection)
+
         puts "Here's your list of Senators!"
       elsif input == "exit"
         break
