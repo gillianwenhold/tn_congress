@@ -63,7 +63,10 @@ class TnCongress::CLI
       end
     elsif answer2 == "bills"
       detail = TnCongress::Reps.get_bills_url(answer)
-      TnCongress::Scraper.get_bills(detail)
+      bills = TnCongress::Scraper.get_bills(detail)
+      TnCongress::Bills.add_bill(bills)
+      TnCongress::Bills.print_bills
+
     end
 
   end

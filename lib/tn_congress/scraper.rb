@@ -32,7 +32,7 @@ class TnCongress::Scraper
   def self.get_bills(url)
     doc = Nokogiri::HTML(open(url))
     @scraped_bills = []
-    tables = doc.search("table")
+    tables = doc.search("table#TabContainer1_tabBillsSponsored_gvBillsSponsored")
     tables.search("tr.items").each do |tr|
       @scraped_bills << {
         :bill_number => tr.search("td[1] a").text,
@@ -41,7 +41,6 @@ class TnCongress::Scraper
         :date => tr.search("td[4]").text
       }
     end
-    binding.pry
     @scraped_bills
   end
 

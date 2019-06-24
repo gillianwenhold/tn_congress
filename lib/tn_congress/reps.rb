@@ -24,14 +24,15 @@ class TnCongress::Reps
     end
   end
 
-  def self.add_bills(bill)
-    @bills << bill
-    bill.rep = self
-  end
+#  def self.add_bills(bill)
+#    @bills << bill
+#    bill.rep = self
+#  end
 
   def self.all
     @@all
   end
+
   # prints list of reps based on CLI input
   def self.print_reps(input)
     if input != "ALL"
@@ -44,7 +45,7 @@ class TnCongress::Reps
     end
   end
 
-  # gets the detail URL of a member based on CLI input
+  # gets the detail URL/bills URL of a member based on CLI input
   def self.get_name_url(input)
     @rep = @list.each_with_index.find{|rep, index| index == input.to_i-1 }
     @new = @rep.to_s.split("@")[4].gsub("name_url=\"", "").gsub("\", ", "")
