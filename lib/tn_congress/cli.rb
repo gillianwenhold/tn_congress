@@ -48,7 +48,6 @@ class TnCongress::CLI
   def get_more_info
     puts ""
     puts "Enter in the number of any member of Congress you'd like to learn more about! Or type 'exit' to quit the program :("
-    puts ""
     input = gets.strip
   end
 

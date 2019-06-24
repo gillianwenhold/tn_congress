@@ -25,14 +25,12 @@ class TnCongress::Reps
   end
 
   def self.print_reps(input)
-    if input == "D"
-      list = @@all.select {|rep| rep.party.strip == "D"}
-    elsif input == "R"
-      list = @@all.select {|rep| rep.party.strip == "R"}
+    if input != "ALL"
+      @list = @@all.select {|rep| rep.party.strip == "#{input}"}
     else
-      list = @@all
+      @list = @@all
     end
-    list.each_with_index do |rep, index|
+    @list.each_with_index do |rep, index|
       puts "#{index+1}. #{rep.name} - Party: #{rep.party.rstrip}, #{rep.district}, Phone: #{rep.phone}"
     end
   end
