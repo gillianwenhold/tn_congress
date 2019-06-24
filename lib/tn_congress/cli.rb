@@ -5,18 +5,22 @@ class TnCongress::CLI
   BASE_PATH = "http://www.capitol.tn.gov"
 
   def call
+    puts ""
     puts "Welcome to the TN Congress Directory!"
     get_index_data
     check_for_party
+    get_more_info
     goodbye
   end
 
   def get_index_data
     puts <<-DOC
+
     Which branch of Congress are you interested in?
       Type 'house' to see a list of House representatives
       Type 'senate' to see a list of Senators
       Type 'exit' to quit :(
+
     DOC
     input = gets.strip.downcase
     if input == "house"
@@ -33,9 +37,19 @@ class TnCongress::CLI
   end
 
   def check_for_party
+    puts ""
     puts "Are you interested in a specific party? Put 'D' to see all Democratic members, 'R' for Republicans, or 'All' to see everyone."
+    puts ""
     input = gets.strip.upcase
+    puts ""
     TnCongress::Reps.print_reps(input)
+  end
+
+  def get_more_info
+    puts ""
+    puts "Enter in the number of any member of Congress you'd like to learn more about! Or type 'exit' to quit the program :("
+    puts ""
+    input = gets.strip
   end
 
   def goodbye
