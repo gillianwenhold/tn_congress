@@ -1,6 +1,6 @@
 class TnCongress::Reps
 
-  attr_accessor :all, :email, :name, :name_url, :party, :bills_url, :phone, :district, :bills, :list
+  attr_accessor :all, :email, :name, :name_url, :party, :bills_url, :phone, :district, :bills, :list, :rep, :new
 
   @@all = []
 
@@ -24,6 +24,15 @@ class TnCongress::Reps
     end
   end
 
+  def self.add_bills(bill)
+    @bills << bill
+    bill.rep = self
+  end
+
+  def self.all
+    @@all
+  end
+  # prints list of reps based on CLI input
   def self.print_reps(input)
     if input != "ALL"
       @list = @@all.select {|rep| rep.party.strip == "#{input}"}
@@ -35,13 +44,10 @@ class TnCongress::Reps
     end
   end
 
-  def self.add_bills(bill)
-    @bills << bill
-    bill.rep = self
-  end
-
-  def self.all
-    @@all
+  # gets the detail URL of a member based on CLI input
+  def self.get_name_url(input)
+    @rep = @list.each_with_index.find{|rep, index| index == input.to_i-1 }
+    @new = @rep.to_s.split("@")[4].gsub("name_url=\"", "").gsub("\", ", "")
   end
 
 end

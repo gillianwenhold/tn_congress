@@ -1,6 +1,6 @@
 class TnCongress::CLI
 
-  attr_accessor :reps
+  attr_accessor :reps, :input
 
   BASE_PATH = "http://www.capitol.tn.gov"
 
@@ -22,14 +22,14 @@ class TnCongress::CLI
       Type 'exit' to quit :(
 
     DOC
-    input = gets.strip.downcase
-    if input == "house"
+    @input = gets.strip.downcase
+    if @input == "house"
       selection = TnCongress::Scraper.get_all_reps(BASE_PATH + "/house/members/")
       TnCongress::Reps.create_from_selection(selection)
-    elsif input == "senate"
+    elsif @input == "senate"
       selection = TnCongress::Scraper.get_all_reps(BASE_PATH + "/senate/members/")
       TnCongress::Reps.create_from_selection(selection)
-    elsif input == "exit"
+    elsif @input == "exit"
       return
     else
       puts "I don't understand. Try again?"
@@ -38,17 +38,19 @@ class TnCongress::CLI
 
   def check_for_party
     puts ""
-    puts "Are you interested in a specific party? Put 'D' to see all Democratic members, 'R' for Republicans, or 'All' to see everyone."
+    puts "Are you interested in a specific party? Put 'D' to see all Democrats, 'R' for Republicans, or 'All' to see everyone."
     puts ""
-    input = gets.strip.upcase
+    answer = gets.strip.upcase
     puts ""
-    TnCongress::Reps.print_reps(input)
+    TnCongress::Reps.print_reps(answer)
   end
 
   def get_more_info
     puts ""
     puts "Enter in the number of any member of Congress you'd like to learn more about! Or type 'exit' to quit the program :("
-    input = gets.strip
+    answer = gets.strip
+    detail = TnCongress::Reps.get_name_url(answer)
+    puts detail
   end
 
   def goodbye
