@@ -25,22 +25,15 @@ class TnCongress::Scraper
     @scraped_reps = []
     tables = doc.search("table")
     tables.search("tr")[1..-1].each do |tr|
-      scraped_rep = {}
-      email = tr.search("td[1] a.icon-mail").attribute("href").value.gsub("mailto:","")
-      name = tr.search("td[2]").text
-      name_url = tr.search("td[2] a").attribute("href").value
-      party = tr.search("td[3]").text
-      bills_url = tr.search("td[4] a").attribute("href").value
-      district = tr.search("td[5] a").text
-      phone = tr.search("td[7]").text
-      scraped_rep[:email] = email
-      scraped_rep[:name] = name
-      scraped_rep[:name_url] = name_url
-      scraped_rep[:party] = party
-      scraped_rep[:bills_url] = bills_url
-      scraped_rep[:district] = district
-      scraped_rep[:phone] = phone
-      @scraped_reps << scraped_rep
+      @scraped_reps << {
+        :email => tr.search("td[1] a.icon-mail").attribute("href").value.gsub("mailto:",""),
+        :name => tr.search("td[2]").text,
+        :name_url => tr.search("td[2] a").attribute("href").value,
+        :party => tr.search("td[3]").text,
+        :bills_url => tr.search("td[4] a").attribute("href").value,
+        :district => tr.search("td[5] a").text,
+        :phone => tr.search("td[7]").text
+      }
     end
     @scraped_reps
   end

@@ -1,6 +1,6 @@
 class TnCongress::Reps
 
-  attr_accessor :all, :email, :name, :name_url, :party, :bills_url, :phone, :district
+  attr_accessor :all, :email, :name, :name_url, :party, :bills_url, :phone, :district, :bills
 
   @@all = []
 
@@ -8,6 +8,7 @@ class TnCongress::Reps
     hash.each do |key, val|
       self.send("#{key}=", val)
     end
+    @bills = []
     @@all << self
   end
 
@@ -21,6 +22,11 @@ class TnCongress::Reps
     details.each do |key, val|
       self.send("#{key}=", val)
     end
+  end
+
+  def self.add_bills(bill)
+    @bills << bill
+    bill.rep = self
   end
 
   def self.all

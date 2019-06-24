@@ -27,6 +27,8 @@ class TnCongress::CLI
         @reps.each_with_index do |rep, index|
           puts "#{index+1}. #{rep.name} - Party: #{rep.party.rstrip}, #{rep.district}, Phone: #{rep.phone}"
         end
+        puts ""
+
       elsif input == "senate"
         selection = TnCongress::Scraper.get_all_reps(BASE_PATH + "/senate/members/")
         TnCongress::Reps.create_from_selection(selection)
