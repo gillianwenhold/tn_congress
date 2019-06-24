@@ -2,6 +2,8 @@ class TnCongress::CLI
 
   attr_accessor :reps
 
+  BASE_PATH = "http://www.capitol.tn.gov"
+
   def call
     puts "Welcome to the TN Congress Directory!"
     get_index_data
@@ -19,20 +21,18 @@ class TnCongress::CLI
     while input != "exit"
       input = gets.strip.downcase
       if input == "house"
-        # selection = TnCongress::Scraper.get_all_reps("http://www.capitol.tn.gov/house/members/")
-        selection = TnCongress::Scraper.get_all_house_reps
+        selection = TnCongress::Scraper.get_all_reps(BASE_PATH + "/house/members/")
         TnCongress::Reps.create_from_selection(selection)
         @reps = TnCongress::Reps.all
         @reps.each_with_index do |rep, index|
-          puts "#{index+1}. #{rep.name} - Party: #{rep.party}, District: #{rep.district}, Phone: #{rep.phone}"
+          puts "#{index+1}. #{rep.name} - Party: #{rep.party.rstrip}, #{rep.district}, Phone: #{rep.phone}"
         end
       elsif input == "senate"
-        # selection = TnCongress::Scraper.get_all_reps("http://www.capitol.tn.gov/senate/members/")
-        selection = TnCongress::Scraper.get_all_senators
+        selection = TnCongress::Scraper.get_all_reps(BASE_PATH + "/senate/members/")
         TnCongress::Reps.create_from_selection(selection)
         @reps = TnCongress::Reps.all
         @reps.each_with_index do |rep, index|
-          puts "#{index+1}. #{rep.name} - Party: #{rep.party}, District: #{rep.district}, Phone: #{rep.phone}"
+          puts "#{index+1}. #{rep.name} - Party: #{rep.party}, #{rep.district}, Phone: #{rep.phone}"
         end
       elsif input == "exit"
         break
