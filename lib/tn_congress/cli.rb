@@ -7,6 +7,7 @@ class TnCongress::CLI
   def call
     puts "Welcome to the TN Congress Directory!"
     get_index_data
+    check_for_party
     goodbye
   end
 
@@ -17,31 +18,24 @@ class TnCongress::CLI
       Type 'senate' to see a list of Senators
       Type 'exit' to quit :(
     DOC
-    input = ""
-    while input != "exit"
-      input = gets.strip.downcase
-      if input == "house"
-        selection = TnCongress::Scraper.get_all_reps(BASE_PATH + "/house/members/")
-        TnCongress::Reps.create_from_selection(selection)
-        @reps = TnCongress::Reps.all
-        @reps.each_with_index do |rep, index|
-          puts "#{index+1}. #{rep.name} - Party: #{rep.party.rstrip}, #{rep.district}, Phone: #{rep.phone}"
-        end
-        puts ""
-
-      elsif input == "senate"
-        selection = TnCongress::Scraper.get_all_reps(BASE_PATH + "/senate/members/")
-        TnCongress::Reps.create_from_selection(selection)
-        @reps = TnCongress::Reps.all
-        @reps.each_with_index do |rep, index|
-          puts "#{index+1}. #{rep.name} - Party: #{rep.party}, #{rep.district}, Phone: #{rep.phone}"
-        end
-      elsif input == "exit"
-        break
-      else
-        puts "I don't understand. Try again?"
-      end
+    input = gets.strip.downcase
+    if input == "house"
+      selection = TnCongress::Scraper.get_all_reps(BASE_PATH + "/house/members/")
+      TnCongress::Reps.create_from_selection(selection)
+    elsif input == "senate"
+      selection = TnCongress::Scraper.get_all_reps(BASE_PATH + "/senate/members/")
+      TnCongress::Reps.create_from_selection(selection)
+    elsif input == "exit"
+      return
+    else
+      puts "I don't understand. Try again?"
     end
+  end
+
+  def check_for_party
+    puts "Are you interested in a specific party? Put 'D' to see all Democratic members, 'R' for Republicans, or 'All' to see everyone."
+    input = gets.strip.upcase
+    TnCongress::Reps.print_reps(input)
   end
 
   def goodbye
