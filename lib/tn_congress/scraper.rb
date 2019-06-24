@@ -4,7 +4,7 @@ require "open-uri"
 
 class TnCongress::Scraper
 
-  attr_accessor :scraped_reps
+  attr_accessor :scraped_reps, :scraped_bills
 
   def self.get_all_reps(url)
     doc = Nokogiri::HTML(open(url))
@@ -22,6 +22,27 @@ class TnCongress::Scraper
       }
     end
     @scraped_reps
+  end
+
+#  def get_details(url)
+#    doc = Nokogiri::HTML(open(url))
+#    @scraped_reps = []
+#  end
+
+  def self.get_bills(url)
+    doc = Nokogiri::HTML(open(url))
+    @scraped_bills = []
+    tables = doc.search("table")
+    tables.search("tr.items").each do |tr|
+      @scraped_bills << {
+        :bill_number => tr.search("td[1] a").text,
+        :description => tr.search("td[2]").text,
+        :last_action => tr.search("td[3]").text,
+        :date => tr.search("td[4]").text
+      }
+    end
+    binding.pry
+    @scraped_bills
   end
 
 end

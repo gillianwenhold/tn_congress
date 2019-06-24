@@ -50,4 +50,9 @@ class TnCongress::Reps
     @new = @rep.to_s.split("@")[4].gsub("name_url=\"", "").gsub("\", ", "")
   end
 
+  def self.get_bills_url(input)
+      @rep = @list.each_with_index.find{|rep, index| index == input.to_i-1 }
+    @new = @rep.to_s.split("@")[6].gsub("bills_url=\"", "").gsub("\", ", "")
+  end
+
 end

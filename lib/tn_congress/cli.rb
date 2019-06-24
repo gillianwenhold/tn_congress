@@ -46,11 +46,26 @@ class TnCongress::CLI
   end
 
   def get_more_info
+
     puts ""
     puts "Enter in the number of any member of Congress you'd like to learn more about! Or type 'exit' to quit the program :("
     answer = gets.strip
-    detail = TnCongress::Reps.get_name_url(answer)
-    puts detail
+    puts ""
+    puts "Type 'bio' for personal info about this representative, or type 'bills' for info about bills they've sponsored!"
+    answer2 = gets.strip.downcase
+
+    if answer2 == "bio"
+      detail = TnCongress::Reps.get_name_url(answer)
+      if @input == "house"
+        TnCongress::Scraper.get_details(BASE_PATH + "/house/members/" + detail)
+      elsif @input == "senate"
+        TnCongress::Scraper.get_details(BASE_PATH + "/senate/members/" + detail)
+      end
+    elsif answer2 == "bills"
+      detail = TnCongress::Reps.get_bills_url(answer)
+      TnCongress::Scraper.get_bills(detail)
+    end
+
   end
 
   def goodbye
