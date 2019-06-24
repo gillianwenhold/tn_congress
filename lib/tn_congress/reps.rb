@@ -1,6 +1,6 @@
 class TnCongress::Reps
 
-  attr_accessor :all, :name, :party, :email, :phone, :district
+  attr_accessor :all, :email, :name, :name_url, :party, :bills_url, :phone, :district
 
   @@all = []
 

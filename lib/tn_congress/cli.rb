@@ -1,6 +1,6 @@
 class TnCongress::CLI
 
-  attr_accessors :reps
+  attr_accessor :reps
 
   def call
     puts "Welcome to the TN Congress Directory!"
