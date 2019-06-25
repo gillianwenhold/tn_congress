@@ -90,7 +90,7 @@ class TnCongress::CLI
   end
 
   def again?
-    puts "For more info, type 'again'. Or type 'exit' to quit!"
+    puts "To learn about another representative, type 'again'. Or type 'exit' to quit!"
     @again = gets.strip.downcase
   end
 
