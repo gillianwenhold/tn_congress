@@ -1,10 +1,8 @@
 # TnCongress
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/tn_congress`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to TnCongress! This gem is a CLI directory of all Congresspeople in the state of Tennessee which pulls data from the members directory of "http://www.capitol.tn.gov". You will be able to learn more about representatives in the House and Senate, including biographical information and/or recent bills they have sponsored.
 
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
+## Installation & Starting the Program
 
 If you have git installed on your computer, click the "clone or download" button at the top of this page, then copy the URL to your clipboard. Then, open a terminal and execute the following commands:
 
@@ -24,36 +22,6 @@ To start the program, type the following command:
 
     $ ./bin/tn_congress
 
-
-
-
-```ruby
-gem 'tn_congress'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install tn_congress
-
 ## Usage
 
-
-
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/tn_congress.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Once the program starts, it will ask for information about which branch of Congress you're interested in (House, Senate, or All) and which party (D, R, or All). Next, it will display a list of members with contact information, sorted alphabetically and filtered by your selection choices. You will then have the option to learn more about any member from the list by typing in their number in the list, and choosing "bio" or "bills". If there's another representative you'd like information about, type "again", or type "exit" to end the program.
