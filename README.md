@@ -10,12 +10,12 @@ TODO: Delete this and the text above, and describe your gem
   On a Mac: Press command - spacebar and type in "terminal" then double click the search result
   On a PC: Press "Win-R" then type "cmd" and press "Enter"
 
-2. Make sure you have git installed by typing the following command in the terminal window and press "Enter"
+2. Make sure you have git installed by typing the following command in the terminal window and press "Enter":
 
       $ git --version
 
   * If you get an error message, follow the link to [download git](https://git-scm.com/downloads), download the version for the type of computer you have, then double click the downloaded file.
-  * To make sure it worked, type the following command in the terminal window and press "Enter".
+  * To make sure it worked, type the following command in the terminal window and press "Enter":
 
       $ git --version
 
