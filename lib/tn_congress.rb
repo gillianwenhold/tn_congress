@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative "./tn_congress/version"
 require_relative "./tn_congress/cli"
 require_relative "./tn_congress/scraper"

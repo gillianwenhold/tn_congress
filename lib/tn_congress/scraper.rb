@@ -2,7 +2,7 @@ require "pry"
 require "nokogiri"
 require "open-uri"
 
-class TnCongress::Scraper
+class Scraper
 
   attr_accessor :scraped_reps, :scraped_bills
 
@@ -12,13 +12,13 @@ class TnCongress::Scraper
     tables = doc.search("table")
     tables.search("tr")[1..-1].each do |tr|
       @scraped_reps << {
-        :email => tr.search("td[1] a.icon-mail").attribute("href").value.gsub("mailto:",""),
-        :name => tr.search("td[2]").text,
-        :name_url => tr.search("td[2] a").attribute("href").value,
-        :party => tr.search("td[3]").text,
-        :bills_url => tr.search("td[4] a").attribute("href").value,
-        :district => tr.search("td[5] a").text,
-        :phone => tr.search("td[7]").text
+        email: tr.search("td[1] a.icon-mail").attribute("href").value.gsub("mailto:",""),
+        name: tr.search("td[2]").text,
+        name_url: tr.search("td[2] a").attribute("href").value,
+        party: tr.search("td[3]").text,
+        bills_url: tr.search("td[4] a").attribute("href").value,
+        district: tr.search("td[5] a").text,
+        phone: tr.search("td[7]").text
       }
     end
     @scraped_reps
@@ -35,10 +35,10 @@ class TnCongress::Scraper
     tables = doc.search("table#TabContainer1_tabBillsSponsored_gvBillsSponsored")
     tables.search("tr.items").each do |tr|
       @scraped_bills << {
-        :bill_number => tr.search("td[1] a").text,
-        :description => tr.search("td[2]").text,
-        :last_action => tr.search("td[3]").text,
-        :date => tr.search("td[4]").text
+        bill_number: tr.search("td[1] a").text,
+        description: tr.search("td[2]").text,
+        last_action: tr.search("td[3]").text,
+        date: tr.search("td[4]").text
       }
     end
     @scraped_bills

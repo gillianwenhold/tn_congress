@@ -1,4 +1,4 @@
-class TnCongress::Reps
+class Reps
 
   attr_accessor :all, :email, :name, :name_url, :party, :bills_url, :phone, :district, :bills, :list, :rep, :new
 

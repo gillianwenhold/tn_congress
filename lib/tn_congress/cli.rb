@@ -1,4 +1,4 @@
-class TnCongress::CLI
+class CLI
 
   attr_accessor :input, :rep
 
@@ -27,11 +27,11 @@ class TnCongress::CLI
     DOC
     @input = gets.strip.downcase
     if @input == "house"
-      selection = TnCongress::Scraper.get_all_reps(BASE_PATH + "/house/members/")
-      TnCongress::Reps.create_from_selection(selection)
+      selection = Scraper.get_all_reps(BASE_PATH + "/house/members/")
+      Reps.create_from_selection(selection)
     elsif @input == "senate"
-      selection = TnCongress::Scraper.get_all_reps(BASE_PATH + "/senate/members/")
-      TnCongress::Reps.create_from_selection(selection)
+      selection = Scraper.get_all_reps(BASE_PATH + "/senate/members/")
+      Reps.create_from_selection(selection)
     else
       puts ""
       puts "I don't understand. Try again?"
@@ -46,11 +46,11 @@ class TnCongress::CLI
     answer = gets.strip.upcase
     puts ""
     if answer == "D"
-      TnCongress::Reps.print_reps(answer)
+       Reps.print_reps(answer)
     elsif answer == "R"
-      TnCongress::Reps.print_reps(answer)
+      Reps.print_reps(answer)
     elsif answer == "ALL"
-      TnCongress::Reps.print_reps(answer)
+      Reps.print_reps(answer)
     else
       puts "I don't understand. Please try again!"
       check_for_party
@@ -68,19 +68,19 @@ class TnCongress::CLI
     answer = gets.strip.downcase
 
     if answer == "bio"
-      detail = TnCongress::Reps.get_name_url(@rep)
+      detail = Reps.get_name_url(@rep)
       if @input == "house"
-        info = TnCongress::Scraper.get_details(BASE_PATH + "/house/members/" + detail)
+        info = Scraper.get_details(BASE_PATH + "/house/members/" + detail)
       elsif @input == "senate"
-        info = TnCongress::Scraper.get_details(BASE_PATH + "/senate/members/" + detail)
+        info = Scraper.get_details(BASE_PATH + "/senate/members/" + detail)
       end
       puts ""
-      TnCongress::Reps.print_info(info)
+      Reps.print_info(info)
     elsif answer == "bills"
-      detail = TnCongress::Reps.get_bills_url(@rep)
-      bills = TnCongress::Scraper.get_bills(detail)
-      TnCongress::Bills.add_bill(bills, @rep)
-      TnCongress::Bills.print_bills
+      detail = Reps.get_bills_url(@rep)
+      bills = Scraper.get_bills(detail)
+      Bills.add_bill(bills, @rep)
+      Bills.print_bills
     else
       puts ""
       puts "I don't understand. Please try again!"
@@ -91,13 +91,13 @@ class TnCongress::CLI
 
   def again?
     puts "To learn about another representative, type 'again'. Or type 'exit' to quit!"
+    puts ""
     @again = gets.strip.downcase
   end
 
   def goodbye
     puts ""
     puts "Thanks for learning more about your representatives!"
-    puts ""
   end
 
 end

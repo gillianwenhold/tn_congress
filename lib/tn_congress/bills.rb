@@ -1,4 +1,5 @@
-class TnCongress::Bills
+# frozen_string_literal: true
+class Bills
 
   attr_accessor :rep, :bill_number, :description, :last_action, :date
 
@@ -9,7 +10,7 @@ class TnCongress::Bills
       self.send("#{key}=", val)
     end
     @@all << self
-    TnCongress::Reps.add_bills(self, rep)
+    Reps.add_bills(self, rep)
   end
 
   def self.add_bill(bills, rep)
