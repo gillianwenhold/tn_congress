@@ -7,7 +7,7 @@ class Bills
 
   def initialize(hash, rep)
     hash.each do |key, val|
-      self.send("#{key}=", val)
+      send("#{key}=", val)
     end
     @@all << self
     Reps.add_bills(self, rep)
@@ -15,12 +15,12 @@ class Bills
 
   def self.add_bill(bills, rep)
     bills.each do |bill|
-      self.new(bill, rep)
+      new(bill, rep)
     end
   end
 
   def self.print_bills
-    @@all.sort_by{|hash| hash.bill_number}[0..10].each do |bill|
+    @@all.sort_by(&:bill_number)[0..10].each do |bill|
       puts <<-DOC
       ------------------- #{bill.bill_number} -------------------
       #{bill.description}
