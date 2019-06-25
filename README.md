@@ -19,6 +19,7 @@ If you do not have git installed:
 
     $ cd downloads/tn_congress
 
+
 To start the program, type the following command:
 
     $ ./bin/tn_congress
