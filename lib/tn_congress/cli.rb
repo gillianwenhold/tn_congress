@@ -1,5 +1,6 @@
-class CLI
+# frozen_string_literal: true
 
+class CLI
   attr_accessor :input, :rep
 
   BASE_PATH = "http://www.capitol.tn.gov"
@@ -8,16 +9,16 @@ class CLI
     puts ""
     puts "Welcome to the TN Congress Directory!"
     @again = nil
-    while @again != 'exit'
-      get_index_data
+    while @again != "exit"
+      index_data
       check_for_party
-      get_more_info
+      more_info
       again?
     end
     goodbye
   end
 
-  def get_index_data
+  def index_data
     puts <<-DOC
 
     Which branch of Congress are you interested in?
@@ -27,26 +28,28 @@ class CLI
     DOC
     @input = gets.strip.downcase
     if @input == "house"
-      selection = Scraper.get_all_reps(BASE_PATH + "/house/members/")
+      selection = Scraper.scrape_all_reps(BASE_PATH + "/house/members/")
       Reps.create_from_selection(selection)
     elsif @input == "senate"
-      selection = Scraper.get_all_reps(BASE_PATH + "/senate/members/")
+      selection = Scraper.scrape_all_reps(BASE_PATH + "/senate/members/")
       Reps.create_from_selection(selection)
     else
       puts ""
       puts "I don't understand. Try again?"
-      get_index_data
+      index_data
     end
   end
 
   def check_for_party
-    puts ""
-    puts "Are you interested in a specific party? Put 'D' to see all Democrats, 'R' for Republicans, or 'All' to see everyone."
-    puts ""
+    puts <<-DOC
+
+    Are you interested in a specific party? Put 'D' to see all Democrats, 'R' for Republicans, or 'All' to see everyone."
+
+    DOC
     answer = gets.strip.upcase
     puts ""
     if answer == "D"
-       Reps.print_reps(answer)
+      Reps.print_reps(answer)
     elsif answer == "R"
       Reps.print_reps(answer)
     elsif answer == "ALL"
@@ -57,36 +60,35 @@ class CLI
     end
   end
 
-  def get_more_info
-
+  def more_info
     puts ""
     puts "Enter in the number of any member of Congress you'd like to learn more about!"
     @rep = gets.strip
-    puts ""
-    puts "Type 'bio' for more info about this representative, or type 'bills' to see recent bills they've sponsored!"
-    puts ""
-    answer = gets.strip.downcase
+    puts <<-DOC
 
+    Type 'bio' for more info about this representative, or type 'bills' to see recent bills they've sponsored!"
+
+    DOC
+    answer = gets.strip.downcase
     if answer == "bio"
-      detail = Reps.get_name_url(@rep)
+      detail = Reps.rep_name_url(@rep)
       if @input == "house"
-        info = Scraper.get_details(BASE_PATH + "/house/members/" + detail)
+        info = Scraper.scrape_details(BASE_PATH + "/house/members/" + detail)
       elsif @input == "senate"
-        info = Scraper.get_details(BASE_PATH + "/senate/members/" + detail)
+        info = Scraper.scrape_details(BASE_PATH + "/senate/members/" + detail)
       end
       puts ""
       Reps.print_info(info)
     elsif answer == "bills"
-      detail = Reps.get_bills_url(@rep)
-      bills = Scraper.get_bills(detail)
+      detail = Reps.rep_bills_url(@rep)
+      bills = Scraper.scrape_bills(detail)
       Bills.add_bill(bills, @rep)
       Bills.print_bills
     else
       puts ""
       puts "I don't understand. Please try again!"
-      get_more_info
+      more_info
     end
-
   end
 
   def again?
@@ -99,5 +101,4 @@ class CLI
     puts ""
     puts "Thanks for learning more about your representatives!"
   end
-
 end

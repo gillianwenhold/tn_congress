@@ -1,5 +1,6 @@
-class Reps
+# frozen_string_literal: true
 
+class Reps
   attr_accessor :all, :email, :name, :name_url, :party, :bills_url, :phone, :district, :bills, :list, :rep, :new
 
   @@all = []
@@ -25,7 +26,7 @@ class Reps
   end
 
   def self.add_bills(bill, rep)
-    bill.rep = self.all.each_with_index.find{|r, index| index == rep.to_i-1}
+    bill.rep = self.all.each_with_index.find { |r, index| index == rep.to_i - 1 }
   end
 
   def self.all
@@ -33,13 +34,13 @@ class Reps
   end
 
   # gets the detail URL/bills URL of a member based on CLI input
-  def self.get_name_url(input)
-    @rep = @list.each_with_index.find{|rep, index| index == input.to_i-1 }
+  def self.rep_name_url(input)
+    @rep = @list.each_with_index.find { |rep, index| index == input.to_i - 1 }
     @new = @rep.to_s.split("@")[4].gsub("name_url=\"", "").gsub("\", ", "")
   end
 
-  def self.get_bills_url(input)
-      @rep = @list.each_with_index.find{|rep, index| index == input.to_i-1 }
+  def self.rep_bills_url(input)
+    @rep = @list.each_with_index.find { |_, index| index == input.to_i - 1 }
     @new = @rep.to_s.split("@")[6].gsub("bills_url=\"", "").gsub("\", ", "")
   end
 
@@ -51,12 +52,14 @@ class Reps
       @list = @@all
     end
     @list.each_with_index do |rep, index|
-      puts "#{index+1}. #{rep.name} - Party: #{rep.party.rstrip}, #{rep.district}, Phone: #{rep.phone}"
+      puts <<-DOC
+      #{index+1}. #{rep.name} - Party: #{rep.party.rstrip}, #{rep.district}, Phone: #{rep.phone}, Email: #{rep.email}
+      DOC
     end
   end
 
   # prints info from bio
-def self.print_info(info)
+  def self.print_info(info)
     bio = []
     committees = []
     info.each do |li|
@@ -77,5 +80,4 @@ def self.print_info(info)
     end
     puts ""
   end
-
 end

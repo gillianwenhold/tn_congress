@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-class Bills
 
+class Bills
   attr_accessor :rep, :bill_number, :description, :last_action, :date
 
   @@all = []
@@ -18,7 +18,6 @@ class Bills
       self.new(bill, rep)
     end
   end
-
 
   def self.print_bills
     @@all.sort_by{|hash| hash.bill_number}[0..10].each do |bill|
