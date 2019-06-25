@@ -7,9 +7,13 @@ class TnCongress::CLI
   def call
     puts ""
     puts "Welcome to the TN Congress Directory!"
-    get_index_data
-    check_for_party
-    get_more_info
+    @again = nil
+    while @again != 'exit'
+      get_index_data
+      check_for_party
+      get_more_info
+      again?
+    end
     goodbye
   end
 
@@ -85,42 +89,15 @@ class TnCongress::CLI
 
   end
 
+  def again?
+    puts "For more info, type 'again'. Or type 'exit' to quit!"
+    @again = gets.strip.downcase
+  end
+
   def goodbye
+    puts ""
     puts "Thanks for learning more about your representatives!"
+    puts ""
   end
 
 end
-
-
-
-=begin
-
-URLS
-  Senate Members: http://www.capitol.tn.gov/senate/members/
-  House Members: http://www.capitol.tn.gov/house/members/
-
-CLI
-
-  GET: Ask user which branch of congress they're interested in - House or Senate?
-
-  DO: Use scraper to make lists of reps based on which branch they're interested in
-    = If Senate, scrape url: http://www.capitol.tn.gov/senate/members/
-    = if House, scrape url: http://www.capitol.tn.gov/house/members/
-
-  GET: Ask user which party they're interested in: Democratic, Republican, or All
-
-  SHOW: List all members with that filter set
-    :name, :party, :email, :phone, :district
-    (hash also includes :personal_url, :bills_url)
-
-  GET: Type the number of a rep they'd like to see more information about (input_1)
-
-  GET: Ask user if they want to see personal information or bills they've sponsored (input_2)
-
-  DO: Use scraper to create detail pages for selected rep using the url for their personal info or bills sponsored based on what they want
-
-  SHOW: List of info
-    = Personal - :personal_info, :committees, :community_involvement, :honors
-    = Bills - :bill_url, :bill_id, :info, :last_action, :date
-
-=end
