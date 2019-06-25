@@ -4,7 +4,7 @@ Welcome to your new gem! In this directory, you'll find the files you need to be
 
 TODO: Delete this and the text above, and describe your gem
 
-## Installation and Running the Program
+## Installation
 
 If you have git installed on your computer, click the "clone or download" button at the top of this page, then copy the URL to your clipboard. Then, open a terminal and execute the following commands:
 
@@ -15,10 +15,10 @@ If you do not have git installed:
   * Click the "clone or download" button at the top of this page, then click "download zip"
   * Double click the download to unzip the files
   * Open a terminal by pressing command - spacebar, then type "terminal" and double click the search result
-  * In the terminal window that opens, type the following command then press enter:
+
+In the terminal window that opens, type the following command then press enter:
 
     $ cd downloads/tn_congress
-
 
 To start the program, type the following command:
 
