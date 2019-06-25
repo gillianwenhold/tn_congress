@@ -11,7 +11,7 @@ class Reps
       send("#{key}=", val)
     end
     @bills = []
-    @@all << self
+    @@all << self unless @@all.include?(self)
   end
 
   def self.create_from_selection(selection)
