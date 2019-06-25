@@ -1,6 +1,6 @@
 class TnCongress::CLI
 
-  attr_accessor :reps, :input
+  attr_accessor :input, :rep
 
   BASE_PATH = "http://www.capitol.tn.gov"
 
@@ -19,7 +19,6 @@ class TnCongress::CLI
     Which branch of Congress are you interested in?
       Type 'house' to see a list of House representatives
       Type 'senate' to see a list of Senators
-      Type 'exit' to quit :(
 
     DOC
     @input = gets.strip.downcase
@@ -29,10 +28,10 @@ class TnCongress::CLI
     elsif @input == "senate"
       selection = TnCongress::Scraper.get_all_reps(BASE_PATH + "/senate/members/")
       TnCongress::Reps.create_from_selection(selection)
-    elsif @input == "exit"
-      return
     else
+      puts ""
       puts "I don't understand. Try again?"
+      get_index_data
     end
   end
 
@@ -42,31 +41,44 @@ class TnCongress::CLI
     puts ""
     answer = gets.strip.upcase
     puts ""
-    TnCongress::Reps.print_reps(answer)
+    if answer == "D"
+      TnCongress::Reps.print_reps(answer)
+    elsif answer == "R"
+      TnCongress::Reps.print_reps(answer)
+    elsif answer == "ALL"
+      TnCongress::Reps.print_reps(answer)
+    else
+      puts "I don't understand. Please try again!"
+      check_for_party
+    end
   end
 
   def get_more_info
 
     puts ""
-    puts "Enter in the number of any member of Congress you'd like to learn more about! Or type 'exit' to quit the program :("
-    answer = gets.strip
+    puts "Enter in the number of any member of Congress you'd like to learn more about!"
+    @rep = gets.strip
     puts ""
-    puts "Type 'bio' for personal info about this representative, or type 'bills' for info about bills they've sponsored!"
-    answer2 = gets.strip.downcase
+    puts "Type 'bio' for more info about this representative, or type 'bills' to see recent bills they've sponsored!"
+    puts ""
+    answer = gets.strip.downcase
 
-    if answer2 == "bio"
-      detail = TnCongress::Reps.get_name_url(answer)
+    if answer == "bio"
+      detail = TnCongress::Reps.get_name_url(@rep)
       if @input == "house"
         TnCongress::Scraper.get_details(BASE_PATH + "/house/members/" + detail)
       elsif @input == "senate"
         TnCongress::Scraper.get_details(BASE_PATH + "/senate/members/" + detail)
       end
-    elsif answer2 == "bills"
-      detail = TnCongress::Reps.get_bills_url(answer)
+    elsif answer == "bills"
+      detail = TnCongress::Reps.get_bills_url(@rep)
       bills = TnCongress::Scraper.get_bills(detail)
-      TnCongress::Bills.add_bill(bills)
+      TnCongress::Bills.add_bill(bills, @rep)
       TnCongress::Bills.print_bills
-
+    else
+      puts ""
+      puts "I don't understand. Please try again!"
+      get_more_info
     end
 
   end

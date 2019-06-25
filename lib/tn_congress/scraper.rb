@@ -24,10 +24,10 @@ class TnCongress::Scraper
     @scraped_reps
   end
 
-#  def get_details(url)
-#    doc = Nokogiri::HTML(open(url))
-#    @scraped_reps = []
-#  end
+  def self.get_details(url)
+    doc = Nokogiri::HTML(open(url))
+    info = doc.css("ul.tabs-container ul.list-rows").text.split(/\s\s\s+/)
+  end
 
   def self.get_bills(url)
     doc = Nokogiri::HTML(open(url))

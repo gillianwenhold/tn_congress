@@ -24,10 +24,9 @@ class TnCongress::Reps
     end
   end
 
-#  def self.add_bills(bill)
-#    @bills << bill
-#    bill.rep = self
-#  end
+  def self.add_bills(bill, rep)
+    bill.rep = self.all.each_with_index.find{|r, index| index == rep.to_i-1}
+  end
 
   def self.all
     @@all

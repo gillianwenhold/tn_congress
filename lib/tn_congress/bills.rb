@@ -4,17 +4,17 @@ class TnCongress::Bills
 
   @@all = []
 
-  def initialize(hash)
+  def initialize(hash, rep)
     hash.each do |key, val|
       self.send("#{key}=", val)
     end
     @@all << self
-#    TnCongress::Reps.add_bills(self)
+    TnCongress::Reps.add_bills(self, rep)
   end
 
-  def self.add_bill(bills)
+  def self.add_bill(bills, rep)
     bills.each do |bill|
-      self.new(bill)
+      self.new(bill, rep)
     end
   end
 
@@ -30,5 +30,9 @@ class TnCongress::Bills
 
       DOC
     end
+  end
+
+  def self.all
+    @@all
   end
 end
