@@ -8,13 +8,9 @@ class CLI
   def call
     puts ""
     puts "Welcome to the TN Congress Directory!"
-    @again = nil
-    while @again != "exit"
-      index_data
-      check_for_party
-      more_info
-      again?
-    end
+    index_data
+    check_for_party
+    more_info
     goodbye
   end
 
@@ -89,12 +85,6 @@ class CLI
       puts "I don't understand. Please try again!"
       more_info
     end
-  end
-
-  def again?
-    puts "To learn about another representative, type 'again'. Or type 'exit' to quit!"
-    puts ""
-    @again = gets.strip.downcase
   end
 
   def goodbye

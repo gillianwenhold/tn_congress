@@ -28,4 +28,8 @@ Then type the following command to run the program:
 
 ## Usage
 
-Once the program starts, it will ask for information about which branch of Congress you're interested in (House, Senate, or All) and which party (D, R, or All). Next, it will display a list of members with contact information, sorted alphabetically and filtered by your selection choices. You will then have the option to learn more about any member from the list by typing in their number in the list, and choosing "bio" or "bills". If there's another representative you'd like information about, type "again", or type "exit" to end the program.
+Once the program starts, it will ask for information about which branch of Congress you're interested in (House, Senate, or All) and which party (D, R, or All). Next, it will display a list of members with contact information, sorted alphabetically and filtered by your selection choices. You will then have the option to learn more about any member from the list by typing in their number in the list, and choosing "bio" or "bills". If there's another representative you'd like information about, restart the program by typing the following command:
+
+    $ ./bin/tn_congress
+
+Then, follow the prompts on the screen!
