@@ -26,7 +26,7 @@ class TnCongress::Scraper
 
   def self.get_details(url)
     doc = Nokogiri::HTML(open(url))
-    info = doc.css("ul.tabs-container ul.list-rows").text.split(/\s\s\s+/)
+    info = doc.css("ul.tabs-container ul.list-rows").text.strip.split(/\s\s\s+/)
   end
 
   def self.get_bills(url)

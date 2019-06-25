@@ -66,10 +66,12 @@ class TnCongress::CLI
     if answer == "bio"
       detail = TnCongress::Reps.get_name_url(@rep)
       if @input == "house"
-        TnCongress::Scraper.get_details(BASE_PATH + "/house/members/" + detail)
+        info = TnCongress::Scraper.get_details(BASE_PATH + "/house/members/" + detail)
       elsif @input == "senate"
-        TnCongress::Scraper.get_details(BASE_PATH + "/senate/members/" + detail)
+        info = TnCongress::Scraper.get_details(BASE_PATH + "/senate/members/" + detail)
       end
+      puts ""
+      TnCongress::Reps.print_info(info)
     elsif answer == "bills"
       detail = TnCongress::Reps.get_bills_url(@rep)
       bills = TnCongress::Scraper.get_bills(detail)
