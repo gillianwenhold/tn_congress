@@ -10,6 +10,15 @@ TODO: Delete this and the text above, and describe your gem
   On a Mac: Press command - spacebar and type in "terminal" then double click the search result
   On a PC: Press "Win-R" then type "cmd" and press "Enter"
 
+  And then execute:
+
+    $ bundle
+
+  Or install it yourself as:
+
+    $ gem install tn_congress
+
+
 2. Make sure you have git installed by typing the following command in the terminal window and press "Enter":
 
       $ git --version
