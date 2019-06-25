@@ -4,12 +4,12 @@ Welcome to TnCongress! This gem is a CLI directory of all Congresspeople in the 
 
 ## Installation & Starting the Program
 
-If you have git installed on your computer, click the "clone or download" button at the top of this page, then copy the URL to your clipboard. Then, open a terminal and execute the following commands:
+**If you have git installed on your computer,** click the "clone or download" button at the top of this page, then copy the URL to your clipboard. Then, open a terminal and execute the following commands:
 
     $ git clone (paste url here)
     $ cd tn_congress
 
-If you do not have git installed:
+**If you do not have git installed:**
   * Click the "clone or download" button at the top of this page, then click "download zip"
   * Double click the download to unzip the files
   * Open a terminal by pressing command - spacebar, then type "terminal" and double click the search result
@@ -18,7 +18,11 @@ In the terminal window that opens, type the following command then press enter:
 
     $ cd downloads/tn_congress
 
-To start the program, type the following command:
+**To start the program,** first install the dependencies by typing the following command in the terminal:
+
+    $ bundle install
+
+Then type the following command to run the program:
 
     $ ./bin/tn_congress
 
