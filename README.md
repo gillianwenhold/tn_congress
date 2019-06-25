@@ -4,24 +4,26 @@ Welcome to your new gem! In this directory, you'll find the files you need to be
 
 TODO: Delete this and the text above, and describe your gem
 
-## Installation
+## Installation and Running the Program
 
-1. Open a terminal
-  On a Mac: Press command - spacebar and type in "terminal" then double click the search result
-  On a PC: Press "Win-R" then type "cmd" and press "Enter"
+If you have git installed on your computer, click the "clone or download" button at the top of this page, then copy the URL to your clipboard. Then, open a terminal and execute the following commands:
 
-  And then execute:
+    $ git clone \(paste url here\)
+    $ cd tn_congress
 
-    $ bundle
+If you do not have git installed:
+  * Click the "clone or download" button at the top of this page, then click "download zip"
+  * Double click the download to unzip the files
+  * Open a terminal by pressing command - spacebar, then type "terminal" and double click the search result
+  * In the terminal window that opens, type the following command then press enter:
 
-  Or install it yourself as:
+      $ cd downloads/tn_congress
 
-    $ gem install tn_congress
+To run the program, type the following command:
 
+    $ ./bin/tn_congress
 
-2. Make sure you have git installed by typing the following command in the terminal window and press "Enter":
-
-      $ git --version
+Or install it yourself as:
 
   * If you get an error message, follow the link to [download git](https://git-scm.com/downloads), download the version for the type of computer you have, then double click the downloaded file.
   * To make sure it worked, type the following command in the terminal window and press "Enter":
