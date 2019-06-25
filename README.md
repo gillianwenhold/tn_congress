@@ -8,7 +8,7 @@ TODO: Delete this and the text above, and describe your gem
 
 If you have git installed on your computer, click the "clone or download" button at the top of this page, then copy the URL to your clipboard. Then, open a terminal and execute the following commands:
 
-    $ git clone \(paste url here\)
+    $ git clone (paste url here)
     $ cd tn_congress
 
 If you do not have git installed:
@@ -17,20 +17,13 @@ If you do not have git installed:
   * Open a terminal by pressing command - spacebar, then type "terminal" and double click the search result
   * In the terminal window that opens, type the following command then press enter:
 
-      $ cd downloads/tn_congress
+    $ cd downloads/tn_congress
 
-To run the program, type the following command:
+To start the program, type the following command:
 
     $ ./bin/tn_congress
 
-Or install it yourself as:
 
-  * If you get an error message, follow the link to [download git](https://git-scm.com/downloads), download the version for the type of computer you have, then double click the downloaded file.
-  * To make sure it worked, type the following command in the terminal window and press "Enter":
-
-      ``` git --version ```
-
-3. Clone the project to your computer.
 
 
 ```ruby
