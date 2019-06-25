@@ -11,7 +11,7 @@ class Reps
       send("#{key}=", val)
     end
     @bills = []
-    @@all << self unless @@all.include?(self)
+    @@all << self
   end
 
   def self.create_from_selection(selection)
@@ -54,7 +54,8 @@ class Reps
             end
     @list.each_with_index do |rep, index|
       puts <<-DOC
-      #{index + 1}. #{rep.name} - Party: #{rep.party.rstrip}, #{rep.district}, Phone: #{rep.phone}, Email: #{rep.email}
+      #{index + 1}. #{rep.name} - Party: #{rep.party.rstrip}, #{rep.district}
+          Phone: #{rep.phone}, Email: #{rep.email}
       DOC
     end
   end
