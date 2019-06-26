@@ -53,7 +53,7 @@ class CLI
   def more_info
     puts ""
     puts "Enter in the number of any member of Congress you'd like to learn more about!"
-    @rep = gets.strip
+    rep = gets.strip
     puts <<-DOC
 
     Type 'bio' for more info about this representative, or type 'bills' to see recent bills they've sponsored!"
@@ -61,9 +61,9 @@ class CLI
     DOC
     answer = gets.strip.downcase
     if answer == "bio"
-      bio_answer
+      bio_answer(rep)
     elsif answer == "bills"
-      detail = Rep.rep_bills_url(@rep)
+      detail = Rep.rep_bills_url(rep)
       Scraper.scrape_bills(detail)
       Bill.print_bills
     else
@@ -78,8 +78,8 @@ class CLI
     puts "Thanks for learning more about your representatives!"
   end
 
-  def bio_answer
-    detail = Rep.rep_name_url(@rep)
+  def bio_answer(rep)
+    detail = Rep.rep_name_url(rep)
     if @input == "house"
       info = Scraper.scrape_details(BASE_PATH + "/house/members/" + detail)
     elsif @input == "senate"
