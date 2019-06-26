@@ -24,9 +24,9 @@ class CLI
     DOC
     @input = gets.strip.downcase
     if @input == "house"
-      selection = Scraper.scrape_all_reps(BASE_PATH + "/house/members/")
+      Scraper.scrape_all_reps(BASE_PATH + "/house/members/")
     elsif @input == "senate"
-      selection = Scraper.scrape_all_reps(BASE_PATH + "/senate/members/")
+      Scraper.scrape_all_reps(BASE_PATH + "/senate/members/")
     else
       puts ""
       puts "I don't understand. Try again?"
@@ -42,15 +42,11 @@ class CLI
     DOC
     answer = gets.strip.upcase
     puts ""
-    if answer == "D"
-      Reps.print_reps(answer)
-    elsif answer == "R"
-      Reps.print_reps(answer)
-    elsif answer == "ALL"
-      Reps.print_reps(answer)
-    else
+    if answer != "D" && answer != "R" && answer != "ALL"
       puts "I don't understand. Please try again!"
       check_for_party
+    else
+      Reps.print_reps(answer)
     end
   end
 
@@ -68,8 +64,7 @@ class CLI
       bio_answer
     elsif answer == "bills"
       detail = Reps.rep_bills_url(@rep)
-      bills = Scraper.scrape_bills(detail)
-      Bills.add_bill(bills, @rep)
+      Scraper.scrape_bills(detail)
       Bills.print_bills
     else
       puts ""

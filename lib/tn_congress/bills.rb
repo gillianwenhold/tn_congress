@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 class Bills
-  attr_accessor :rep, :bill_number, :description, :last_action, :date
+  attr_reader :rep, :bill_number, :description, :last_action, :date
 
   @@all = []
 
-  def initialize(hash, rep)
-    hash.each do |key, val|
-      send("#{key}=", val)
-    end
+  def initialize(bill_number:, description:, last_action:, date:)
+    @bill_number = bill_number
+    @description = description
+    @last_action = last_action
+    @date = date
     @@all << self
-    Reps.add_bills(self, rep)
   end
 
   def self.add_bill(bills, rep)

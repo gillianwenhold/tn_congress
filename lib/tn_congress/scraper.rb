@@ -32,15 +32,14 @@ class Scraper
 
     def scrape_bills(url)
       doc = Nokogiri::HTML(open(url))
-      @scraped_bills = []
       tables = doc.search("table#TabContainer1_tabBillsSponsored_gvBillsSponsored")
       tables.search("tr.items").each do |tr|
-        @scraped_bills << {
+        Bills.new(
           bill_number: tr.search("td[1] a").text,
           description: tr.search("td[2]").text,
           last_action: tr.search("td[3]").text,
           date: tr.search("td[4]").text,
-        }
+        )
       end
       @scraped_bills
     end

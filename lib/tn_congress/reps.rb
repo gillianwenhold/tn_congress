@@ -6,7 +6,7 @@ class Reps
 
   @@all = []
 
-  def initialize(email:, name:, name_url:, party: "default", bills_url:, phone:, district:)
+  def initialize(email:, name:, name_url:, party:, bills_url:, phone:, district:)
     @email = email
     @name = name
     @name_url = name_url
