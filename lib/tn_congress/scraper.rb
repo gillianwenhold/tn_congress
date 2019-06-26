@@ -38,7 +38,7 @@ class Scraper
           bill_number: tr.search("td[1] a").text,
           description: tr.search("td[2]").text,
           last_action: tr.search("td[3]").text,
-          date: tr.search("td[4]").text,
+          date: tr.search("td[4]").text
         )
       end
       @scraped_bills

@@ -20,12 +20,6 @@ class Rep
 
   # def find
 
-  def self.add_details(details)
-    details.each do |key, val|
-      send("#{key}=", val)
-    end
-  end
-
   def self.add_bills(bill, rep)
     bill.rep = all.each_with_index.find { |_, index| index == rep.to_i - 1 }
   end
