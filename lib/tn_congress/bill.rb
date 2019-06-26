@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Bills
+class Bill
   attr_reader :rep, :bill_number, :description, :last_action, :date
 
   @@all = []

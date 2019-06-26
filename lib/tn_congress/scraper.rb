@@ -12,7 +12,7 @@ class Scraper
       doc = Nokogiri::HTML(open(url))
       tables = doc.search("table")
       tables.search("tr")[1..-1].each do |tr|
-        Reps.new(
+        Rep.new(
           email: tr.search("td[1] a.icon-mail").attribute("href").value.gsub("mailto:", ""),
           name: tr.search("td[2]").text,
           name_url: tr.search("td[2] a").attribute("href").value,
@@ -22,7 +22,7 @@ class Scraper
           phone: tr.search("td[7]").text
         )
       end
-      Reps.all
+      Rep.all
     end
 
     def scrape_details(url)
@@ -34,7 +34,7 @@ class Scraper
       doc = Nokogiri::HTML(open(url))
       tables = doc.search("table#TabContainer1_tabBillsSponsored_gvBillsSponsored")
       tables.search("tr.items").each do |tr|
-        Bills.new(
+        Bill.new(
           bill_number: tr.search("td[1] a").text,
           description: tr.search("td[2]").text,
           last_action: tr.search("td[3]").text,

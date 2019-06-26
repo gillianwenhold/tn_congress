@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Reps
+class Rep
   attr_reader :email, :name, :name_url, :party, :bills_url,
               :phone, :district, :bills, :list, :rep
 

@@ -46,7 +46,7 @@ class CLI
       puts "I don't understand. Please try again!"
       check_for_party
     else
-      Reps.print_reps(answer)
+      Rep.print_reps(answer)
     end
   end
 
@@ -63,9 +63,9 @@ class CLI
     if answer == "bio"
       bio_answer
     elsif answer == "bills"
-      detail = Reps.rep_bills_url(@rep)
+      detail = Rep.rep_bills_url(@rep)
       Scraper.scrape_bills(detail)
-      Bills.print_bills
+      Bill.print_bills
     else
       puts ""
       puts "I don't understand. Please try again!"
@@ -79,13 +79,13 @@ class CLI
   end
 
   def bio_answer
-    detail = Reps.rep_name_url(@rep)
+    detail = Rep.rep_name_url(@rep)
     if @input == "house"
       info = Scraper.scrape_details(BASE_PATH + "/house/members/" + detail)
     elsif @input == "senate"
       info = Scraper.scrape_details(BASE_PATH + "/senate/members/" + detail)
     end
     puts ""
-    Reps.print_info(info)
+    Rep.print_info(info)
   end
 end
