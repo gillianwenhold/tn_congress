@@ -25,10 +25,8 @@ class CLI
     @input = gets.strip.downcase
     if @input == "house"
       selection = Scraper.scrape_all_reps(BASE_PATH + "/house/members/")
-      Reps.create_from_selection(selection)
     elsif @input == "senate"
       selection = Scraper.scrape_all_reps(BASE_PATH + "/senate/members/")
-      Reps.create_from_selection(selection)
     else
       puts ""
       puts "I don't understand. Try again?"
@@ -67,14 +65,7 @@ class CLI
     DOC
     answer = gets.strip.downcase
     if answer == "bio"
-      detail = Reps.rep_name_url(@rep)
-      if @input == "house"
-        info = Scraper.scrape_details(BASE_PATH + "/house/members/" + detail)
-      elsif @input == "senate"
-        info = Scraper.scrape_details(BASE_PATH + "/senate/members/" + detail)
-      end
-      puts ""
-      Reps.print_info(info)
+      bio_answer
     elsif answer == "bills"
       detail = Reps.rep_bills_url(@rep)
       bills = Scraper.scrape_bills(detail)
@@ -90,5 +81,16 @@ class CLI
   def goodbye
     puts ""
     puts "Thanks for learning more about your representatives!"
+  end
+
+  def bio_answer
+    detail = Reps.rep_name_url(@rep)
+    if @input == "house"
+      info = Scraper.scrape_details(BASE_PATH + "/house/members/" + detail)
+    elsif @input == "senate"
+      info = Scraper.scrape_details(BASE_PATH + "/senate/members/" + detail)
+    end
+    puts ""
+    Reps.print_info(info)
   end
 end

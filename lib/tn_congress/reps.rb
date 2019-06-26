@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
 class Reps
-  attr_accessor :all, :email, :name, :name_url, :party, :bills_url
-  attr_accessor :phone, :district, :bills, :list, :rep, :new
+  attr_reader :email, :name, :name_url, :party, :bills_url,
+              :phone, :district, :bills, :list, :rep
 
   @@all = []
 
-  def initialize(hash)
-    hash.each do |key, val|
-      send("#{key}=", val)
-    end
+  def initialize(email:, name:, name_url:, party: "default", bills_url:, phone:, district:)
+    @email = email
+    @name = name
+    @name_url = name_url
+    @party = party
+    @bills_url = bills_url
+    @phone = phone
+    @district = district
     @bills = []
     @@all << self
   end
 
-  def self.create_from_selection(selection)
-    selection.each do |rep|
-      new(rep)
-    end
-  end
+  # def find
 
   def self.add_details(details)
     details.each do |key, val|
@@ -36,13 +36,13 @@ class Reps
 
   # gets the detail URL/bills URL of a member based on CLI input
   def self.rep_name_url(input)
-    @rep = @list.each_with_index.find { |_, index| index == input.to_i - 1 }
-    @new = @rep.to_s.split("@")[4].gsub("name_url=\"", "").gsub("\", ", "")
+    rep = @list.each_with_index.find { |_, index| index == input.to_i - 1 }
+    rep.to_s.split("@")[4].gsub("name_url=\"", "").gsub("\", ", "")
   end
 
   def self.rep_bills_url(input)
-    @rep = @list.each_with_index.find { |_, index| index == input.to_i - 1 }
-    @new = @rep.to_s.split("@")[6].gsub("bills_url=\"", "").gsub("\", ", "")
+    rep = @list.each_with_index.find { |_, index| index == input.to_i - 1 }
+    rep.to_s.split("@")[6].gsub("bills_url=\"", "").gsub("\", ", "")
   end
 
   # prints list of reps based on CLI input
