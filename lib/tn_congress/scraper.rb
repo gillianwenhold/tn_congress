@@ -41,7 +41,6 @@ class Scraper
           date: tr.search("td[4]").text
         )
       end
-      @scraped_bills
     end
   end
 end
