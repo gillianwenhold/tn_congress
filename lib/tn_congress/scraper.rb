@@ -6,7 +6,6 @@ require "open-uri"
 
 class Scraper
   attr_reader :scraped_reps, :scraped_bills,
-
   class << self
     def scrape_all_reps(url)
       doc = Nokogiri::HTML(open(url))
@@ -30,7 +29,7 @@ class Scraper
       doc.css("ul.tabs-container ul.list-rows").text.strip.split(/\s\s\s+/)
     end
 
-    def scrape_bills(url, rep)
+    def scrape_bills(url)
       doc = Nokogiri::HTML(open(url))
       tables = doc.search("table#TabContainer1_tabBillsSponsored_gvBillsSponsored")
       info = []
@@ -39,7 +38,7 @@ class Scraper
           bill_number: tr.search("td[1] a").text,
           description: tr.search("td[2]").text,
           last_action: tr.search("td[3]").text,
-          date: tr.search("td[4]").text
+          date: tr.search("td[4]").text,
         }
       end
       info

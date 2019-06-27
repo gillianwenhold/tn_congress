@@ -24,9 +24,7 @@ class Rep
     end
 
     def find_or_create_rep(rep)
-      if !find_rep(rep[:name])
-        Rep.new(rep)
-      end
+      Rep.new(rep) unless find_rep(rep[:name])
     end
 
     def all

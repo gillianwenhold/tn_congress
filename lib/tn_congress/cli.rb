@@ -41,7 +41,6 @@ class CLI
     puts <<-DOC
 
     Are you interested in a specific party? Put 'D' to see all Democrats, 'R' for Republicans, or 'All' to see everyone."
-
     DOC
     @party = gets.strip.upcase
     puts ""
@@ -57,7 +56,7 @@ class CLI
     puts ""
     puts "Enter in the number of any member of Congress you'd like to learn more about!"
     rep = gets.strip
-    while rep.to_i > Rep.all.select { |rep| rep.party.strip == @party } .length
+    while rep.to_i > Rep.all.select { |r| r.party.strip == @party } .length
       puts "Please make sure the number you enter is not higher than the list length. Try again!"
       rep = gets.strip
     end
@@ -72,13 +71,7 @@ class CLI
       puts "I don't understand. Please try again!"
       answer = gets.strip.downcase
     end
-    if answer == "bio"
-      bio_answer(rep)
-    elsif answer == "bills"
-      detail = Rep.rep_bills_url(rep)
-      info = Scraper.scrape_bills(detail, rep)
-      Bill.print_bills(info)
-    end
+    bio_or_bills(answer,rep)
   end
 
   def again?
@@ -90,6 +83,16 @@ class CLI
 
   def goodbye
     puts "Thanks for learning more about your representatives!"
+  end
+
+  def bio_or_bills(answer, rep)
+    if answer == "bio"
+      bio_answer(rep)
+    elsif answer == "bills"
+      detail = Rep.rep_bills_url(rep)
+      info = Scraper.scrape_bills(detail)
+      Bill.print_bills(info)
+    end
   end
 
   def bio_answer(rep)
