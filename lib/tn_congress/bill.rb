@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Bill
-  attr_reader :rep, :bill_number, :description, :last_action, :date
+  attr_reader :bill_number, :description, :last_action, :date
 
-  def print_bills(info)
+  def self.print_bills(info)
     info[0..10].each do |bill|
       puts <<-DOC
       ------------------- #{bill[:bill_number]} -------------------

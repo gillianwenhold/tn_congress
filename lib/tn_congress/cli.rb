@@ -43,13 +43,13 @@ class CLI
     Are you interested in a specific party? Put 'D' to see all Democrats, 'R' for Republicans, or 'All' to see everyone."
 
     DOC
-    answer = gets.strip.upcase
+    @party = gets.strip.upcase
     puts ""
-    if answer != "D" && answer != "R" && answer != "ALL"
+    if @party != "D" && @party != "R" && @party != "ALL"
       puts "I don't understand. Please try again!"
       check_for_party
     else
-      Rep.print_reps(answer)
+      Rep.print_reps(@party)
     end
   end
 
@@ -57,22 +57,27 @@ class CLI
     puts ""
     puts "Enter in the number of any member of Congress you'd like to learn more about!"
     rep = gets.strip
+    while rep.to_i > Rep.all.select { |rep| rep.party.strip == @party } .length
+      puts "Please make sure the number you enter is not higher than the list length. Try again!"
+      rep = gets.strip
+    end
     puts <<-DOC
 
     Type 'bio' for more info about this representative, or type 'bills' to see recent bills they've sponsored!"
 
     DOC
     answer = gets.strip.downcase
+    while answer != "bio" && answer != "bills"
+      puts ""
+      puts "I don't understand. Please try again!"
+      answer = gets.strip.downcase
+    end
     if answer == "bio"
       bio_answer(rep)
     elsif answer == "bills"
       detail = Rep.rep_bills_url(rep)
       info = Scraper.scrape_bills(detail, rep)
       Bill.print_bills(info)
-    else
-      puts ""
-      puts "I don't understand. Please try again!"
-      more_info
     end
   end
 
