@@ -8,7 +8,7 @@ CLI:
 
 Confirm:
 - [x] Application uses Ruby Objects to communicate (and not global methods)
-- [ ] The application is generally DRY
+- [x] The application is generally DRY
 - [x] You have committed often
 - [x] Conforms to Nitro Ruby linting rules (Run `rubocop` on your project root directory and confirm it exits without any offenses detected.)
 - [x] Your commit messages are meaningful
@@ -16,5 +16,5 @@ Confirm:
 - [x] You have committed frequently
 
 README.md contains:
-- [ ] A short description
-- [ ] Installation & execution instructions
+- [x] A short description
+- [x] Installation & execution instructions

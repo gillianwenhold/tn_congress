@@ -13,26 +13,28 @@ class Bill
     @@all << self
   end
 
-  def self.add_bill(bills, rep)
-    bills.each do |bill|
-      new(bill, rep)
+  class << self
+    def add_bill(bills, rep)
+      bills.each do |bill|
+        new(bill, rep)
+      end
     end
-  end
 
-  def self.print_bills
-    @@all.sort_by(&:bill_number)[0..10].each do |bill|
-      puts <<-DOC
-      ------------------- #{bill.bill_number} -------------------
-      #{bill.description}
+    def print_bills
+      @@all.sort_by(&:bill_number)[0..10].each do |bill|
+        puts <<-DOC
+        ------------------- #{bill.bill_number} -------------------
+        #{bill.description}
 
-      Date: #{bill.date}
-      Last Action: #{bill.last_action}
+        Date: #{bill.date}
+        Last Action: #{bill.last_action}
 
-      DOC
+        DOC
+      end
     end
-  end
 
-  def self.all
-    @@all
+    def all
+      @@all
+    end
   end
 end
