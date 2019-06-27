@@ -5,14 +5,14 @@ require "nokogiri"
 require "open-uri"
 
 class Scraper
-  attr_accessor :scraped_reps, :scraped_bills
+  attr_reader :scraped_reps, :scraped_bills,
 
   class << self
     def scrape_all_reps(url)
       doc = Nokogiri::HTML(open(url))
       tables = doc.search("table")
       tables.search("tr")[1..-1].each do |tr|
-        Rep.new(
+        Rep.find_or_create_rep(
           email: tr.search("td[1] a.icon-mail").attribute("href").value.gsub("mailto:", ""),
           name: tr.search("td[2]").text,
           name_url: tr.search("td[2] a").attribute("href").value,

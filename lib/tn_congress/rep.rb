@@ -19,7 +19,15 @@ class Rep
   end
 
   class << self
-  # def find
+    def find_rep(name)
+      @@all.find { |rep| rep.name == name }
+    end
+
+    def find_or_create_rep(rep)
+      if !find_rep(rep[:name])
+        Rep.new(rep)
+      end
+    end
 
     def add_bills(bill, rep)
       bill.rep = all.each_with_index.find { |_, index| index == rep.to_i - 1 }

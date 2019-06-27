@@ -8,9 +8,12 @@ class CLI
   def call
     puts ""
     puts "Welcome to the TN Congress Directory!"
-    index_data
-    check_for_party
-    more_info
+    while @answer != "exit"
+      index_data
+      check_for_party
+      more_info
+      again?
+    end
     goodbye
   end
 
@@ -73,8 +76,14 @@ class CLI
     end
   end
 
-  def goodbye
+  def again?
+    puts "Type 'again' to learn about another representative. Or type 'exit' to quit the program."
     puts ""
+    @answer = gets.strip
+    puts ""
+  end
+
+  def goodbye
     puts "Thanks for learning more about your representatives!"
   end
 
