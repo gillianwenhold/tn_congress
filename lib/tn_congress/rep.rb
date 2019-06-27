@@ -40,12 +40,12 @@ class Rep
     # gets the detail URL/bills URL of a member based on CLI input
     def rep_name_url(input)
       rep = @list.each_with_index.find { |_, index| index == input.to_i - 1 }
-      rep.to_s.split("@")[4].gsub("name_url=\"", "").gsub("\", ", "")
+      rep[0].name_url
     end
 
     def rep_bills_url(input)
-      rep = @list.each_with_index.find { |_, index| index == input.to_i - 1 }
-      rep.to_s.split("@")[6].gsub("bills_url=\"", "").gsub("\", ", "")
+      rep = @list.each_with_index.find { |_, index| index == input.to_i - 1 }.flatten
+      rep[0].bills_url
     end
 
     # prints list of reps based on CLI input
