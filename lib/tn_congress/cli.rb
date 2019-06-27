@@ -67,8 +67,8 @@ class CLI
       bio_answer(rep)
     elsif answer == "bills"
       detail = Rep.rep_bills_url(rep)
-      Scraper.scrape_bills(detail)
-      Bill.print_bills
+      info = Scraper.scrape_bills(detail, rep)
+      Bill.print_bills(info)
     else
       puts ""
       puts "I don't understand. Please try again!"

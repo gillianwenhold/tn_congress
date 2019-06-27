@@ -30,7 +30,7 @@ class Rep
     end
 
     def add_bills(bill, rep)
-      bill.rep = all.each_with_index.find { |_, index| index == rep.to_i - 1 }
+      bill.rep = @@all.each_with_index.find { |_, index| index == rep.to_i - 1 }
     end
 
     def all
