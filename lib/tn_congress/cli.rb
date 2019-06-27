@@ -71,7 +71,7 @@ class CLI
       puts "I don't understand. Please try again!"
       answer = gets.strip.downcase
     end
-    bio_or_bills(answer,rep)
+    bio_or_bills(answer, rep)
   end
 
   def again?
